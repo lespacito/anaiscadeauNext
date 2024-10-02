@@ -26,12 +26,13 @@ import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
 import { DEFAULT_REDIRECT } from "@/routes";
 import { useSearchParams } from "next/navigation";
+import FormError from "./FormError";
 
 const LoginForm = () => {
   const searchParams = useSearchParams();
   const urlError =
     searchParams.get("error") === "OAuthAccountNotLinked"
-      ? "Le compte google n'est pas enregistré, merci d'indiquer le même compte"
+      ? "Le compte google n'est pas lié merci de vous connecter avec le même compte déjà enregistré"
       : null;
   const [isGoogleLoading, setIsGoogleLoading] = React.useState(false);
 
@@ -65,6 +66,7 @@ const LoginForm = () => {
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
+        <FormError message={urlError} />
         <Form {...form}>
           <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
             <FormField

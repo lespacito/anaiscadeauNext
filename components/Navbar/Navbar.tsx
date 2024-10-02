@@ -20,7 +20,7 @@ import { useTheme } from "next-themes";
 import { useSession } from "next-auth/react";
 
 const Navbar = () => {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const { setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 

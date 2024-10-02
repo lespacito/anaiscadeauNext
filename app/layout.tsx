@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import { ThemeProvider } from "@/components/Themes/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { SessionProvider } from "next-auth/react";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Cadeau Anais blog/passions",
@@ -18,18 +19,20 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <SessionProvider>
-            <Navbar />
-            {children}
-            <Toaster />
-          </SessionProvider>
-        </ThemeProvider>
+        <Suspense fallback={<div>Chargement...</div>}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <SessionProvider>
+              <Navbar />
+              {children}
+              <Toaster />
+            </SessionProvider>
+          </ThemeProvider>
+        </Suspense>
       </body>
     </html>
   );
