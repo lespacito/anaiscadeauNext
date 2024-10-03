@@ -9,7 +9,7 @@ const nextConfig = {
           { key: "Access-Control-Allow-Credentials", value: "true" },
           {
             key: "Access-Control-Allow-Origin",
-            value: "https://main--celadon-paletas-021e4b.netlify.app/login",
+            value: "https://main--celadon-paletas-021e4b.netlify.app/",
           }, // Remplacez par votre origine réelle
           {
             key: "Access-Control-Allow-Methods",
@@ -29,7 +29,7 @@ const nextConfig = {
           { key: "Access-Control-Allow-Credentials", value: "true" },
           {
             key: "Access-Control-Allow-Origin",
-            value: "https://main--celadon-paletas-021e4b.netlify.app/login",
+            value: "https://main--celadon-paletas-021e4b.netlify.app/",
           }, // Remplacez par votre origine réelle
           {
             key: "Access-Control-Allow-Methods",
