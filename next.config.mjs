@@ -7,7 +7,10 @@ const nextConfig = {
         source: "/api/:path*",
         headers: [
           { key: "Access-Control-Allow-Credentials", value: "true" },
-          { key: "Access-Control-Allow-Origin", value: "*" }, // Remplacez par votre origine réelle
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "https://main--celadon-paletas-021e4b.netlify.app/",
+          }, // Remplacez par votre origine réelle
           {
             key: "Access-Control-Allow-Methods",
             value: "GET, DELETE, PATCH, POST, PUT",
@@ -24,7 +27,10 @@ const nextConfig = {
         source: "/login",
         headers: [
           { key: "Access-Control-Allow-Credentials", value: "true" },
-          { key: "Access-Control-Allow-Origin", value: "*" }, // Remplacez par votre origine réelle
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "https://main--celadon-paletas-021e4b.netlify.app/",
+          }, // Remplacez par votre origine réelle
           {
             key: "Access-Control-Allow-Methods",
             value: "GET, POST, OPTIONS", // Ajoutez les méthodes HTTP que vous souhaitez autoriser
