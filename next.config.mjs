@@ -3,19 +3,35 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // matching all API routes
+        // Correspondance pour toutes les routes API
         source: "/api/:path*",
         headers: [
           { key: "Access-Control-Allow-Credentials", value: "true" },
-          { key: "Access-Control-Allow-Origin", value: "*" }, // replace this your actual origin
+          { key: "Access-Control-Allow-Origin", value: "*" }, // Remplacez par votre origine réelle
           {
             key: "Access-Control-Allow-Methods",
-            value: "GET,DELETE,PATCH,POST,PUT",
+            value: "GET, DELETE, PATCH, POST, PUT",
           },
           {
             key: "Access-Control-Allow-Headers",
             value:
               "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+          },
+        ],
+      },
+      {
+        // Correspondance pour la route /login
+        source: "/login",
+        headers: [
+          { key: "Access-Control-Allow-Credentials", value: "true" },
+          { key: "Access-Control-Allow-Origin", value: "*" }, // Remplacez par votre origine réelle
+          {
+            key: "Access-Control-Allow-Methods",
+            value: "GET, POST, OPTIONS", // Ajoutez les méthodes HTTP que vous souhaitez autoriser
+          },
+          {
+            key: "Access-Control-Allow-Headers",
+            value: "X-CSRF-Token, X-Requested-With, Accept, Content-Type",
           },
         ],
       },
