@@ -7,6 +7,5 @@ export default {
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
     }),
-  ],
-  url: process.env.NEXTAUTH_URL,
+  ]
 } satisfies NextAuthConfig;
