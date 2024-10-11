@@ -1,25 +1,41 @@
+import ShinyButton from "@/components/ui/shiny-button";
+import { Spotlight } from "@/components/ui/spotlight";
+import Image from "next/image";
 import Link from "next/link";
-import { Button } from "../ui/button";
-
 const HeroTop = () => {
   return (
-    <div className="flex flex-col h-screen">
-      <div className="max-w-4xl mx-auto px-4 py-16 text-center">
-        <div className="inline-block px-4 py-2 mb-6 rounded-full bg-blue-100 text-blue-800 text-sm font-medium">
-          Suis mes articles et mes passions
+    <div className="max-w-screen-xl mx-auto px-8 py-10">
+      {/* Spotlight component for decorative purposes */}
+      <Spotlight
+        className="-top-40 left-0 md:left-60 md:-top-20"
+        fill="white"
+      />
+      <div className="flex flex-col md:flex-row items-center">
+        {/* Text section */}
+        <div className="md:w-1/2">
+          {/* Main title */}
+          <h1 className="dark:text-white font-bold leading-tight text-7xl">
+            Rédige tes articles.
+          </h1>
+          {/* Subtitle paragraph */}
+          <p className="dark:text-white font-medium text-2xl leading-normal max-w-[560px] mt-8">
+            Découvre les articles ainsi que mes différentes passions.
+          </p>
+          {/* Link to login page with a shimmer button */}
+          <Link href="/login" className="mt-10 inline-block">
+            <ShinyButton>Commencer</ShinyButton>
+          </Link>
         </div>
-        <h1 className="text-4xl md:text-6xl font-bold font-serif mb-6 tracking-tight">
-          Bienvenue!
-        </h1>
-        <p className="text-xl text-muted-foreground mb-8 ">
-          Laisse toi emporter par la vibe et découvrons ensemble les articles de
-          la communauté
-        </p>
-        <Link href="/login">
-          <Button variant={"outline"} size={"lg"} className="p-6 rounded-full ">
-            Commencer
-          </Button>
-        </Link>
+
+        {/* Image section */}
+        <div className="hidden md:flex md:w-1/2 mt-10 md:mt-0 justify-center">
+          <Image
+            src="/assets/img/karting.webp"
+            alt="image logo"
+            width={511}
+            height={589}
+          />
+        </div>
       </div>
     </div>
   );

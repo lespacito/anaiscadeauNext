@@ -1,7 +1,7 @@
 "use server";
 
 import { ContactFormInputs, ContactFormSchema } from "@/app/schema/contactform";
-import { EmailTemplateContact } from "@/components/contact/email-template";
+import ContactEmail from "@/emails/Contact-template";
 import { resend } from "@/lib/mail-utils";
 
 export async function sendForm(input: ContactFormInputs) {
@@ -21,7 +21,7 @@ export async function sendForm(input: ContactFormInputs) {
       from: "Noreply <noreply@resend.dev>",
       to: ["lehack192@gmail.com"],
       subject: "Demande de contact",
-      react: EmailTemplateContact({
+      react: ContactEmail({
         email: validateData.data.email,
         message: validateData.data.message,
       }),

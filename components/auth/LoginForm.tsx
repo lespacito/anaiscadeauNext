@@ -27,6 +27,7 @@ import { signIn } from "next-auth/react";
 import { DEFAULT_REDIRECT } from "@/routes";
 import { useSearchParams } from "next/navigation";
 import FormError from "./FormError";
+import { toast } from "sonner";
 
 const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -87,7 +88,11 @@ const LoginForm = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full" disabled={isPending}>
+            <Button
+              type="submit"
+              className="w-full bg-blue-500 dark:bg-blue-500 text-white dark:text-black"
+              disabled={isPending}
+            >
               {isPending ? (
                 <Loader2 className="w-5 h-5 animate-spin" />
               ) : (

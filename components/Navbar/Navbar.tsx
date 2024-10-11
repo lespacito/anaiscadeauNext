@@ -1,14 +1,16 @@
 "use client";
-import React, { useState } from "react";
-import Link from "next/link";
-import { Menu } from "lucide-react"; // You can use ShadCN icons here
 import { Button, buttonVariants } from "@/components/ui/button";
+import PulsatingButton from "@/components/ui/pulsating-button";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTrigger,
-} from "@/components/ui/sheet"; // ShadCN component for Drawer
+} from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,11 +18,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
-import { useTheme } from "next-themes";
 import { useSession } from "next-auth/react";
+import { useTheme } from "next-themes";
 
 const Navbar = () => {
-  const { status } = useSession();
+  const { status } = useSession(); // Suivre l'état de la session
   const { setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -50,18 +52,21 @@ const Navbar = () => {
           >
             Contactez-moi
           </Link>
-          {status === "authenticated" ? ( // On vérifie si l'utilisateur est authentifié
+
+          {/* Authenticated or not */}
+          {status === "authenticated" ? (
             <Link
-              href="/dashboard"
+              href="/profile"
               className={buttonVariants({ variant: "outline", size: "lg" })}
             >
               Mon compte
             </Link>
           ) : (
-            <Link href="/login" className={buttonVariants({ size: "lg" })}>
-              Connexion
+            <Link href="/login">
+              <PulsatingButton>Connexion</PulsatingButton>
             </Link>
           )}
+
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="icon">
@@ -115,9 +120,11 @@ const Navbar = () => {
                 >
                   Contactez-moi
                 </Link>
-                {status === "authenticated" ? ( // On vérifie si l'utilisateur est authentifié
+
+                {/* Authenticated or not */}
+                {status === "authenticated" ? (
                   <Link
-                    href="/dashboard"
+                    href="/profile"
                     className={buttonVariants({
                       variant: "outline",
                       size: "sm",
@@ -133,6 +140,7 @@ const Navbar = () => {
                     Connexion
                   </Link>
                 )}
+
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="outline" size="icon">
