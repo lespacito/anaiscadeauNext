@@ -1,3 +1,4 @@
+"use client"
 import { getUsername } from "@/actions/getUsername";
 import { ProfileForm } from "@/components/auth/ProfileForm";
 import { useQuery } from "@tanstack/react-query";
@@ -5,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 const fetchUser = async () => {
   return await getUsername();
 };
-const Profile = async () => {
+const Profile = () => {
   const {
     data: user,
     error,
