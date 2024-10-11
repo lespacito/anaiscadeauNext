@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 
+import { LoginSchema } from "@/app/schema";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -15,19 +17,16 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
-import * as z from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { LoginSchema } from "@/app/schema";
-import { Input } from "../ui/input";
-import { Loader2 } from "lucide-react";
-import { FcGoogle } from "react-icons/fc";
-import { signIn } from "next-auth/react";
 import { DEFAULT_REDIRECT } from "@/routes";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
+import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { FcGoogle } from "react-icons/fc";
+import * as z from "zod";
+import { Input } from "../ui/input";
 import FormError from "./FormError";
-import { toast } from "sonner";
 
 const LoginForm = () => {
   const searchParams = useSearchParams();

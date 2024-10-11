@@ -1,12 +1,11 @@
-import type { Metadata } from "next";
-import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import { ThemeProvider } from "@/components/Themes/theme-provider";
+import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
+import { Poppins } from "next/font/google";
 import { Suspense } from "react";
 import { Toaster } from "sonner";
-import { Poppins } from "next/font/google";
-import ShineBorder from "@/components/ui/shine-border";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Cadeau Anais blog/passions",

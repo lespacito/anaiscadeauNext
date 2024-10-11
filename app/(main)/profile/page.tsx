@@ -1,4 +1,3 @@
-"use client";
 import { getUsername } from "@/actions/getUsername";
 import { ProfileForm } from "@/components/auth/ProfileForm";
 import { useQuery } from "@tanstack/react-query";
