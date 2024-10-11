@@ -21,7 +21,7 @@ const Profile = async () => {
   }
 
   if (error) {
-    return <p>Une erreur est survenue lors de l'affichage</p>;
+    return <p>Une erreur est survenue</p>;
   }
   return (
     <div className="flex flex-col gap-4 p-4">
