@@ -1,6 +1,4 @@
 "use client";
-import React from "react";
-
 import { LoginSchema } from "@/app/schema";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,6 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import * as z from "zod";
