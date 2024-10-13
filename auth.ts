@@ -22,10 +22,8 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   },
   callbacks: {
     async signIn({ user, account, profile }) {
-      if (account?.provider !== "credentials") {
-        return true;
-      }
-      return true;
+      // Allow all providers to sign in
+      return account?.provider !== "credentials"; // Modify as necessary
     },
     async session({ session, token }) {
       if (token.sub && session.user) {
@@ -55,6 +53,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   session: {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // 30 days
+    updateAge: 24 * 60 * 60,
   },
   providers: [
     Resend({
@@ -64,13 +63,12 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   ],
   cookies: {
     sessionToken: {
-      name: `__Secure-next-auth.session-token`,
+      name: `__Secure-next-auth.session-token`, // Secure cookie name
       options: {
-        httpOnly: true, // Non accessible via JavaScript
-        secure: process.env.NODE_ENV === "production", // Utiliser HTTPS en production
-        sameSite: "lax", // Ajustez selon vos besoins
-        path: "/", // Assurez-vous que le chemin est correct
-        maxAge: 30 * 24 * 60 * 60, // Durée de vie du cookie
+        httpOnly: true, // Prevents JavaScript access
+        secure: process.env.NODE_ENV === "production", // Use secure cookies in production
+        sameSite: "lax", // Cross-site request protection
+        path: "/",
       },
     },
   },
