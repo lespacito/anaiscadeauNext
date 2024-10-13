@@ -40,6 +40,8 @@ const HeroTop = () => {
               width={511}
               height={589}
               priority
+              quality={75}
+              placeholder="blur"
             />
           </div>
         </div>
