@@ -65,9 +65,11 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     sessionToken: {
       name: `__Secure-next-auth.session-token`,
       options: {
-        httpOnly: true,
+        httpOnly: true, // Non accessible via JavaScript
         secure: process.env.NODE_ENV === "production", // Utiliser HTTPS en production
-        sameSite: "lax", // Ou "none" si nécessaire
+        sameSite: "lax", // Ajustez selon vos besoins
+        path: "/", // Assurez-vous que le chemin est correct
+        maxAge: 30 * 24 * 60 * 60, // Durée de vie du cookie
       },
     },
   },
