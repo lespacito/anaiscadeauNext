@@ -39,6 +39,7 @@ const HeroTop = () => {
               alt="image logo"
               width={511}
               height={589}
+              priority
             />
           </div>
         </div>
