@@ -42,7 +42,6 @@ const HeroTop = () => {
               priority
               quality={75}
               placeholder="blur"
-              fill
             />
           </div>
         </div>
