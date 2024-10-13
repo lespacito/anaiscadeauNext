@@ -39,7 +39,6 @@ const HeroTop = () => {
               alt="image logo"
               priority
               quality={75}
-              placeholder="blur"
             />
           </div>
         </div>
