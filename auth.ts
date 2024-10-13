@@ -20,17 +20,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       });
     },
   },
-  cookies: {
-    sessionToken: {
-      name: "next-auth.session-token",
-      options: {
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        secure: process.env.NODE_ENV === "production",
-      },
-    },
-  },
   callbacks: {
     async signIn({ user, account, profile }) {
       if (account?.provider !== "credentials") {
@@ -72,4 +61,14 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     }),
     ...authConfig.providers,
   ],
+  cookies: {
+    sessionToken: {
+      name: `__Secure-next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production", // Utiliser HTTPS en production
+        sameSite: "lax", // Ou "none" si nécessaire
+      },
+    },
+  },
 });
