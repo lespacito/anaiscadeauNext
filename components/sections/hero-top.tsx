@@ -37,8 +37,6 @@ const HeroTop = () => {
             <Image
               src="/assets/img/karting.webp"
               alt="image logo"
-              width={511}
-              height={589}
               priority
               quality={75}
               placeholder="blur"
