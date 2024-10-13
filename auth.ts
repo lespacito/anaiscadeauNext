@@ -1,9 +1,9 @@
-import NextAuth from "next-auth";
-import authConfig from "./auth.config";
-import { db } from "./lib/db";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { Role } from "@prisma/client";
+import NextAuth from "next-auth";
 import Resend from "next-auth/providers/resend";
+import authConfig from "./auth.config";
+import { db } from "./lib/db";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   trustHost: true,
@@ -18,6 +18,17 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         where: { id: user.id },
         data: { emailVerified: new Date() },
       });
+    },
+  },
+  cookies: {
+    sessionToken: {
+      name: "next-auth.session-token",
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+      },
     },
   },
   callbacks: {
