@@ -61,15 +61,4 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     }),
     ...authConfig.providers,
   ],
-  cookies: {
-    sessionToken: {
-      name: `__Secure-next-auth.session-token`, // Secure cookie name
-      options: {
-        httpOnly: true, // Prevents JavaScript access
-        secure: process.env.NODE_ENV === "production", // Use secure cookies in production
-        sameSite: "lax", // Cross-site request protection
-        path: "/",
-      },
-    },
-  },
 });
