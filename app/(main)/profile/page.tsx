@@ -1,5 +1,6 @@
 "use client";
 import { getUsername } from "@/actions/getUsername";
+import { useUserStore } from "@/app/store/user.store";
 import { ProfileForm } from "@/components/auth/ProfileForm";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -13,6 +14,7 @@ const fetchUser = async () => {
 
 const Profile = () => {
   const [progress, setProgress] = useState(13);
+  const { user, setUser } = useUserStore();
 
   useEffect(() => {
     const timer = setTimeout(() => setProgress(66), 500);
@@ -21,17 +23,20 @@ const Profile = () => {
 
   const handleLogout = async () => {
     await signOut();
+    setUser(null);
   };
 
-  const {
-    data: user,
-    error,
-    isLoading,
-  } = useQuery({
+  const { data: fetchedUser, error, isLoading } = useQuery({
     queryKey: ["user"],
     queryFn: fetchUser,
-    retry: false, // Désactive les tentatives automatiques si une erreur survient
+    retry: false,
   });
+
+  useEffect(() => {
+    if (fetchedUser) {
+      setUser(fetchedUser);
+    }
+  }, [fetchedUser, setUser]);
 
   if (isLoading) {
     return (

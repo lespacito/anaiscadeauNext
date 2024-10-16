@@ -31,7 +31,7 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center p-4">
         <div className="text-xl font-bold gap-2">
           <Link href="/" className="text-gray-600">
-            AnaisCadeau
+            AnaisPassions
           </Link>
         </div>
 
@@ -99,7 +99,7 @@ const Navbar = () => {
             </SheetTrigger>
             <SheetContent side="right">
               <SheetHeader>
-                <h2 className="text-lg font-semibold">AnaisCadeau</h2>
+                <h2 className="text-lg font-semibold">AnaisPassions</h2>
               </SheetHeader>
               <nav className="flex flex-col space-y-4 mt-4">
                 <Link
