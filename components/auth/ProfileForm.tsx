@@ -20,6 +20,10 @@ export const ProfileForm = () => {
       setUser(updatedUser);
       toast.success("Votre nom d'utilisateur a été mis à jour.");
     } catch (error) {
+      console.error(
+        "Erreur lors de la mise à jour du nom d'utilisateur:",
+        error
+      );
       toast.error("Impossible de mettre à jour le nom d'utilisateur.");
     }
   };

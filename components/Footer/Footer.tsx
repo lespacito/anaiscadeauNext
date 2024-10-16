@@ -15,7 +15,7 @@ const Footer = () => {
               Contact
             </Link>
             <Link href="/terms" className="text-sm">
-              Conditions d'utilisation
+              Politique de confidentialité
             </Link>
           </nav>
 
