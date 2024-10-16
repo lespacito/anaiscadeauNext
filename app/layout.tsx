@@ -23,7 +23,6 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={poppins.className}>
-        <Analytics />
         <Suspense fallback={<div>Chargement...</div>}>
           <ThemeProvider
             attribute="class"
@@ -34,6 +33,7 @@ export default function RootLayout({
             <SessionProvider>
               <Navbar />
               {children}
+              <Analytics />
               <Toaster position="top-right" richColors />
             </SessionProvider>
           </ThemeProvider>
