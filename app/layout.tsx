@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar/Navbar";
 import { ThemeProvider } from "@/components/Themes/theme-provider";
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
 import { Poppins } from "next/font/google";
@@ -22,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={poppins.className}>
+        <Analytics />
         <Suspense fallback={<div>Chargement...</div>}>
           <ThemeProvider
             attribute="class"
