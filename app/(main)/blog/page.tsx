@@ -1,3 +1,4 @@
+import React from "react";
 import BlogList from "@/components/blog/BlogList";
 import { fetchPosts } from "@/lib/fetch-post"; // Appel API que nous avons défini avant
 
@@ -6,7 +7,7 @@ const BlogPage = async () => {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold text-center mt-10 mb-10">Blog</h1>
+      <h1 className="my-10 text-center text-4xl font-bold">Blog</h1>
       <BlogList posts={posts} />
     </div>
   );

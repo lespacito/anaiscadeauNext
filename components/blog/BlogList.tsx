@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import BlogItem from "@/components/blog/BlogItem";
 
 // Définir un type pour le post
@@ -14,7 +15,7 @@ type BlogListProps = {
 
 const BlogList = ({ posts }: BlogListProps) => {
   return (
-    <div className="max-w-screen-lg mx-auto space-y-2">
+    <div className="mx-auto max-w-screen-lg space-y-2">
       {posts.map((post) => (
         <BlogItem key={post.id} post={post} />
       ))}

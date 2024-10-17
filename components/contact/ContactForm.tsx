@@ -80,7 +80,7 @@ const ContactForm = () => {
               <CardContent className="space-y-4">
                 {form.formState.errors?.root?.serverError && (
                   <Alert variant="destructive">
-                    <ExclamationTriangleIcon className="h-4 w-4" />
+                    <ExclamationTriangleIcon className="size-4" />
                     <AlertTitle>Erreur !</AlertTitle>
                     <AlertDescription>
                       {form.formState.errors?.root?.serverError?.message}

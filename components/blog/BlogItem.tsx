@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
@@ -14,8 +15,9 @@ type BlogItemProps = {
 };
 const BlogItem = ({ post }: BlogItemProps) => {
   return (
+    // eslint-disable-next-line tailwindcss/no-custom-classname
     <CardContainer className="inter-var">
-      <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
+      <CardBody className="group/card relative size-auto  rounded-xl border border-black/[0.1] bg-gray-50 p-6 dark:border-white/[0.2] dark:bg-black dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] sm:w-[30rem]  ">
         <CardItem
           translateZ="50"
           className="text-xl font-bold text-neutral-600 dark:text-white"
@@ -25,16 +27,16 @@ const BlogItem = ({ post }: BlogItemProps) => {
         <CardItem
           as="p"
           translateZ="60"
-          className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
+          className="mt-2 max-w-sm text-sm text-neutral-500 dark:text-neutral-300"
         >
           {post.body}
         </CardItem>
-        <div className="flex justify-between items-center mt-20">
+        <div className="mt-20 flex items-center justify-between">
           <CardItem
             translateZ={20}
             translateX={-40}
             as="button"
-            className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
+            className="rounded-xl px-4 py-2 text-xs font-normal dark:text-white"
           >
             <Link
               href={`/blog/${post.id}`}

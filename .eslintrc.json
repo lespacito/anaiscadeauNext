@@ -1,7 +1,27 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"],
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:tailwindcss/recommended",
+    "next/core-web-vitals"
+  ],
+  "plugins": ["tailwindcss"],
   "rules": {
-    "@typescript-eslint/no-empty-object-type": "off",
-    "no-var": "off"
-  }
+    "tailwindcss/classnames-order": "error", // Exige l'ordre des classes Tailwind
+    "tailwindcss/no-custom-classname": "off", // Avertit sur les noms de classe non définis
+    "no-unused-vars": "off"
+  },
+  "overrides": [
+    {
+      "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
+      "rules": {
+        "tailwindcss/classnames-order": "error",
+        "tailwindcss/no-custom-classname": "off",
+        "react-hooks/exhaustive-deps": "off"
+      }
+    }
+  ]
 }

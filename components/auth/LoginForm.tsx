@@ -57,7 +57,7 @@ const LoginForm = () => {
   };
 
   return (
-    <Card className="max-w-sm w-full">
+    <Card className="w-full max-w-sm">
       <CardHeader>
         <CardTitle className="text-2xl">Se connecter</CardTitle>
         <CardDescription>
@@ -88,25 +88,25 @@ const LoginForm = () => {
             />
             <Button
               type="submit"
-              className="w-full bg-blue-500 dark:bg-blue-500 text-white dark:text-black"
+              className="w-full bg-blue-500 text-white dark:bg-blue-500 dark:text-black"
               disabled={isPending}
             >
               {isPending ? (
-                <Loader2 className="w-5 h-5 animate-spin" />
+                <Loader2 className="size-5 animate-spin" />
               ) : (
                 "Se connecter avec email"
               )}
             </Button>
           </form>
-          <div className="w-full flex items-center space-x-2">
-            <div className="h-[1px] w-full border" />
+          <div className="flex w-full items-center space-x-2">
+            <div className="h-px w-full border" />
             <span className="flex">Ou</span>
-            <div className="h-[1px] w-full border" />
+            <div className="h-px w-full border" />
           </div>
           <Button
             type="submit"
             variant="outline"
-            className="w-full space-x-2 flex"
+            className="flex w-full space-x-2"
             onClick={() => {
               setIsGoogleLoading(true);
               onclick("google");
@@ -114,10 +114,10 @@ const LoginForm = () => {
             disabled={isPending}
           >
             {isGoogleLoading ? (
-              <Loader2 className="w-5 h-5 animate-spin" />
+              <Loader2 className="size-5 animate-spin" />
             ) : (
               <>
-                <FcGoogle className="w-6 h-6" />
+                <FcGoogle className="size-6" />
                 <span>Se connecter avec Google</span>
               </>
             )}

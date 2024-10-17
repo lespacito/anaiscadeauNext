@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { getUsername } from "@/actions/getUsername";
 import { useUserStore } from "@/app/store/user.store";
 import { ProfileForm } from "@/components/auth/ProfileForm";
@@ -26,7 +27,11 @@ const Profile = () => {
     setUser(null);
   };
 
-  const { data: fetchedUser, error, isLoading } = useQuery({
+  const {
+    data: fetchedUser,
+    error,
+    isLoading,
+  } = useQuery({
     queryKey: ["user"],
     queryFn: fetchUser,
     retry: false,
@@ -40,7 +45,7 @@ const Profile = () => {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen">
+      <div className="flex h-screen flex-col items-center justify-center">
         <p className="mt-4">Chargement du profil...</p>
         <Progress value={progress} className="w-1/2 max-w-md" />
       </div>
@@ -49,7 +54,7 @@ const Profile = () => {
 
   if (error) {
     return (
-      <div className="text-center p-4">
+      <div className="p-4 text-center">
         <p className="text-red-500">
           Une erreur est survenue lors du chargement du profil.
         </p>
@@ -61,10 +66,10 @@ const Profile = () => {
     );
   }
   return (
-    <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-4xl font-bold mb-6">Mon compte</h1>
-      <div className="shadow-md rounded-lg p-6 mb-6">
-        <h2 className="text-2xl font-semibold mb-4">
+    <div className="mx-auto max-w-2xl p-6">
+      <h1 className="mb-6 text-4xl font-bold">Mon compte</h1>
+      <div className="mb-6 rounded-lg p-6 shadow-md">
+        <h2 className="mb-4 text-2xl font-semibold">
           Informations personnelles
         </h2>
         <p className="mb-2">

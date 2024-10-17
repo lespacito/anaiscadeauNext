@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
 import { Poppins } from "next/font/google";
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 import { Toaster } from "sonner";
 import "./globals.css";
 

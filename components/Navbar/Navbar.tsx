@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 "use client";
 import { Button, buttonVariants } from "@/components/ui/button";
 import PulsatingButton from "@/components/ui/pulsating-button";
@@ -28,15 +29,15 @@ const Navbar = () => {
 
   return (
     <header className="shadow-md">
-      <div className="container mx-auto flex justify-between items-center p-4">
-        <div className="text-xl font-bold gap-2">
+      <div className="container mx-auto flex items-center justify-between p-4">
+        <div className="gap-2 text-xl font-bold">
           <Link href="/" className="text-gray-600">
             AnaisPassions
           </Link>
         </div>
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex space-x-6 hover:bg-transparent">
+        <nav className="hidden space-x-6 hover:bg-transparent md:flex">
           <Link href="/blog" className={buttonVariants({ variant: "ghost" })}>
             Blog
           </Link>
@@ -70,8 +71,8 @@ const Navbar = () => {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="icon">
-                <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                <SunIcon className="size-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                <MoonIcon className="absolute size-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                 <span className="sr-only">Changer le thême</span>
               </Button>
             </DropdownMenuTrigger>
@@ -94,14 +95,14 @@ const Navbar = () => {
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" aria-label="Open menu">
-                <Menu className="w-6 h-6" />
+                <Menu className="size-6" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right">
               <SheetHeader>
                 <h2 className="text-lg font-semibold">AnaisPassions</h2>
               </SheetHeader>
-              <nav className="flex flex-col space-y-4 mt-4">
+              <nav className="mt-4 flex flex-col space-y-4">
                 <Link
                   href="/blog"
                   className={buttonVariants({ variant: "ghost", size: "sm" })}
@@ -144,8 +145,8 @@ const Navbar = () => {
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="outline" size="icon">
-                      <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                      <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                      <SunIcon className="size-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                      <MoonIcon className="absolute size-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                       <span className="sr-only">Changer le thême</span>
                     </Button>
                   </DropdownMenuTrigger>
