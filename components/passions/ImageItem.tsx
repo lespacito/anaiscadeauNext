@@ -5,14 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-type Image = {
+type ImageType = {
   id: string;
   url: string;
   createdAt: Date;
 };
 
 type ImageItemProps = {
-  image: Image;
+  image: ImageType;
 };
 
 const ImageItem: React.FC<ImageItemProps> = ({ image }) => {
