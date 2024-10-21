@@ -1,14 +1,14 @@
 import Footer from "@/components/Footer/Footer";
 import Navbar from "@/components/Navbar/Navbar";
 import { ThemeProvider } from "@/components/Themes/theme-provider";
+import Provider from "@/util/Provider";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
 import { Poppins } from "next/font/google";
-import React from "react";
+import React, { Suspense } from "react";
 import { Toaster } from "sonner";
 import "./globals.css";
-import Provider from "@/util/Provider";
 
 export const metadata: Metadata = {
   title: "Anais Passions",
@@ -16,6 +16,9 @@ export const metadata: Metadata = {
 };
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "700"] });
+
+// Composant de chargement
+const Loading = () => <div>Chargement...</div>;
 
 export default function RootLayout({
   children,
@@ -33,7 +36,9 @@ export default function RootLayout({
         >
           <SessionProvider>
             <Navbar />
-            <Provider>{children}</Provider>
+            <Suspense fallback={<Loading />}>
+              <Provider>{children}</Provider>
+            </Suspense>
             <Footer />
             <Analytics />
             <Toaster position="top-right" richColors />
