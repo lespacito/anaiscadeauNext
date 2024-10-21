@@ -12,7 +12,7 @@ export async function getUsername() {
 
   const user = await db.user.findUnique({
     where: { email: session.user.email },
-    select: { name: true },
+    select: { name: true, role: true },
   });
 
   if (!user) {

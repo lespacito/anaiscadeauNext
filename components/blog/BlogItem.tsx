@@ -3,10 +3,17 @@ import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 
-export type Post = {
-  id: number; // ID du post
-  title: string; // Titre du post
-  body: string; // Contenu du post
+type Post = {
+  id: string;
+  title: string;
+  content: string;
+  createdAt: Date;
+  updatedAt: Date;
+  authorId: string;
+  author: {
+    name: string | null;
+    email: string | null;
+  };
 };
 
 // Définir les props du composant avec le type Post
@@ -29,7 +36,7 @@ const BlogItem = ({ post }: BlogItemProps) => {
           translateZ="60"
           className="mt-2 max-w-sm text-sm text-neutral-500 dark:text-neutral-300"
         >
-          {post.body}
+          {post.content}
         </CardItem>
         <div className="mt-20 flex items-center justify-between">
           <CardItem

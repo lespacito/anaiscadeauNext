@@ -57,7 +57,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   },
   providers: [
     Resend({
-      from: "onboarding@resend.dev",
+      from: "noreplyg@anaispassions.ch",
     }),
     ...authConfig.providers,
   ],

@@ -5,9 +5,10 @@ import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
 import { Poppins } from "next/font/google";
-import React, { Suspense } from "react";
+import React from "react";
 import { Toaster } from "sonner";
 import "./globals.css";
+import Provider from "@/util/Provider";
 
 export const metadata: Metadata = {
   title: "Anais Passions",
@@ -24,22 +25,20 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={poppins.className}>
-        <Suspense fallback={<div>Chargement...</div>}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <SessionProvider>
-              <Navbar />
-              {children}
-              <Footer />
-              <Analytics />
-              <Toaster position="top-right" richColors />
-            </SessionProvider>
-          </ThemeProvider>
-        </Suspense>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SessionProvider>
+            <Navbar />
+            <Provider>{children}</Provider>
+            <Footer />
+            <Analytics />
+            <Toaster position="top-right" richColors />
+          </SessionProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

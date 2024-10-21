@@ -3,9 +3,16 @@ import BlogItem from "@/components/blog/BlogItem";
 
 // Définir un type pour le post
 type Post = {
-  id: number; // ID du post
-  title: string; // Titre du post
-  body: string; // Contenu du post
+  id: string;
+  title: string;
+  content: string;
+  createdAt: Date;
+  updatedAt: Date;
+  authorId: string;
+  author: {
+    name: string | null;
+    email: string | null;
+  };
 };
 
 // Définir les props du composant BlogList

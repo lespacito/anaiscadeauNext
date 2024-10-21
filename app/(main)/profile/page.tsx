@@ -1,5 +1,5 @@
+/* eslint-disable react/react-in-jsx-scope */
 "use client";
-import React from "react";
 import { getUsername } from "@/actions/getUsername";
 import { useUserStore } from "@/app/store/user.store";
 import { ProfileForm } from "@/components/auth/ProfileForm";
@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useQuery } from "@tanstack/react-query";
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const fetchUser = async () => {
@@ -65,6 +66,7 @@ const Profile = () => {
       </div>
     );
   }
+
   return (
     <div className="mx-auto max-w-2xl p-6">
       <h1 className="mb-6 text-4xl font-bold">Mon compte</h1>
@@ -77,10 +79,20 @@ const Profile = () => {
         </p>
         <ProfileForm />
       </div>
+
+      {user?.role === "ADMIN" && (
+        <Link href="/admin/dashboard" passHref>
+          <Button className="mb-4 w-full dark:text-black">
+            Accéder au tableau de bord administrateur
+          </Button>
+        </Link>
+      )}
+
       <Button onClick={handleLogout} variant="destructive" className="w-full">
         Déconnexion
       </Button>
     </div>
   );
 };
+
 export default Profile;

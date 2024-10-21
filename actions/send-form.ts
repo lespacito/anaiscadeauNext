@@ -18,7 +18,7 @@ export async function sendForm(input: ContactFormInputs) {
     // Envoie l'email
 
     const { error } = await resend.emails.send({
-      from: "Noreply <noreply@resend.dev>",
+      from: "Noreply <noreply@anaispassions.ch>",
       to: ["lehack192@gmail.com"],
       subject: "Demande de contact",
       react: ContactEmail({
