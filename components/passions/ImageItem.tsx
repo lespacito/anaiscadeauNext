@@ -1,65 +1,47 @@
-/* eslint-disable tailwindcss/no-custom-classname */
-/* eslint-disable react/react-in-jsx-scope */
-import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
-import { buttonVariants } from "@/components/ui/button";
-import Link from "next/link";
-import Image from "next/image";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import Image from 'next/image'
+import React from 'react'
 
-type Image = {
-  id: string;
-  url: string;
-  createdAt: Date;
-};
+interface ImageItemProps {
+  id: string
+  title: string
+  description?: string
+  url: string
+  author: {
+    name: string
+  }
+  width: number
+  height: number
+}
 
-// Définir les props du composant avec le type Image
-type ImageItemProps = {
-  image: Image;
-};
-
-const ImageItem = ({ image }: ImageItemProps) => {
+const ImageItem: React.FC<ImageItemProps> = ({
+  title,
+  description,
+  url,
+  author,
+}) => {
   return (
-    <CardContainer className="inter-var">
-      <CardBody className="group/card relative size-auto rounded-xl border border-black/[0.1] bg-gray-50 p-6 dark:border-white/[0.2] dark:bg-black dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] sm:w-[30rem]">
-        <CardItem
-          translateZ="50"
-          className="text-xl font-bold text-neutral-600 dark:text-white"
-        >
-          Image {image.id}
-        </CardItem>
-        <CardItem
-          translateZ="60"
-          className="mt-2 h-48 w-full overflow-hidden rounded-lg"
-        >
+    <Card className="mx-auto my-4 max-w-md overflow-hidden">
+      <CardHeader>
+        <CardTitle className="text-xl font-semibold">{title}</CardTitle>
+        <CardDescription>Photographe : {author.name}</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="relative h-64 w-full">
           <Image
-            src={image.url}
-            alt={`Image ${image.id}`}
+            src={url}
+            alt={title}
             layout="fill"
             objectFit="cover"
+            className="rounded-md"
           />
-        </CardItem>
-        <div className="mt-4 flex items-center justify-between">
-          <CardItem
-            translateZ={20}
-            className="text-sm text-neutral-500 dark:text-neutral-300"
-          >
-            Créée le : {new Date(image.createdAt).toLocaleDateString()}
-          </CardItem>
-          <CardItem
-            translateZ={20}
-            as="button"
-            className="rounded-xl px-4 py-2 text-xs font-normal dark:text-white"
-          >
-            <Link
-              href={`/images/${image.id}`}
-              className={buttonVariants({ variant: "link" })}
-            >
-              Voir en détail
-            </Link>
-          </CardItem>
         </div>
-      </CardBody>
-    </CardContainer>
-  );
-};
+        {description && (
+          <p className="mt-2 text-sm text-gray-600">{description}</p>
+        )}
+      </CardContent>
+    </Card>
+  )
+}
 
-export default ImageItem;
+export default ImageItem
