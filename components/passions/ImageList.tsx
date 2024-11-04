@@ -1,25 +1,41 @@
-/* eslint-disable tailwindcss/no-custom-classname */
-import { FocusCards } from "@/components/ui/focus-cards";
-import React from "react";
+"use client";
+import { getImagesAction } from "@/actions/getImages";
+import { useServerActionQuery } from "@/lib/zsa.query";
+import { FocusCards } from "../ui/focus-cards";
 
-type ImageType = {
-  id: string;
-  url: string;
-  createdAt: Date;
+export const ImageList = () => {
+  const {
+    data: imagesData,
+    isLoading,
+    error,
+  } = useServerActionQuery(getImagesAction, {
+    input: { take: 10, orderBy: { createdAt: "desc" } },
+    queryKey: ["images"],
+  });
+
+  if (isLoading) return <div>Chargement des images...</div>; // Message de chargement
+  if (error)
+    return (
+      <div>
+        Erreur lors de la récupération des images. Merci de contacter les Admins
+        ou Lespacito
+      </div>
+    );
+
+  return (
+    <div className="mx-auto max-w-screen-lg">
+      {imagesData?.images.map((image) => (
+        <FocusCards
+          key={image.id}
+          cards={[
+            {
+              // Utilisation de FocusCards pour chaque image
+              title: `Image ajoutée le ${new Date(image.createdAt).toLocaleDateString()}`,
+              src: image.url,
+            },
+          ]}
+        />
+      ))}
+    </div>
+  );
 };
-
-type ImageItemProps = {
-  images: ImageType[];
-};
-
-const ImageList: React.FC<ImageItemProps> = ({ images }) => {
-  const cards = images.map((image) => ({
-    title: `Image ajoutée le ${new Date(image.createdAt).toLocaleDateString()}`,
-    src: image.url,
-    id: image.id,
-  }));
-
-  return <FocusCards cards={cards} />;
-};
-
-export default ImageList;
