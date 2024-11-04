@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { getImages } from "@/actions/getImages";
 import ImageList from "@/components/passions/ImageList";
 

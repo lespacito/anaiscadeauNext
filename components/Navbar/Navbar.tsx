@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 "use client";
 import { Button, buttonVariants } from "@/components/ui/button";
 import PulsatingButton from "@/components/ui/pulsating-button";

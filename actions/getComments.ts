@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 import { z } from "zod";
 import { createServerAction } from "zsa";
 
-export const getPostsAction = createServerAction()
+export const getCommentsAction = createServerAction()
   .input(
     z.object({
       skip: z.number().optional(),
@@ -13,40 +13,34 @@ export const getPostsAction = createServerAction()
           createdAt: z.enum(["asc", "desc"]).optional(),
         })
         .optional(),
+      postId: z.string().optional(),
     }),
   )
   .handler(async ({ input }) => {
     try {
-      const posts = await db.post.findMany({
+      const comments = await db.comment.findMany({
         skip: input.skip,
         take: input.take,
         orderBy: input.orderBy,
+        where: input.postId ? { postId: input.postId } : undefined,
         include: {
           author: {
             select: {
               id: true,
               name: true,
-              email: true,
             },
           },
-          comments: {
+          post: {
             select: {
               id: true,
-              content: true,
-              createdAt: true,
-              author: {
-                select: {
-                  id: true,
-                  name: true,
-                },
-              },
+              title: true,
             },
           },
         },
       });
-      return posts;
+      return comments;
     } catch (error) {
-      console.error("Erreur lors de la récupération des posts:", error);
-      throw new Error("Impossible de récupérer les posts");
+      console.error("Erreur lors de la récupération des commentaires:", error);
+      throw new Error("Impossible de récupérer les commentaires");
     }
   });

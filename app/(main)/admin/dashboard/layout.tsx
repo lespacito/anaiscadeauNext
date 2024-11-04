@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { AppSidebar } from "@/components/sidebar/SidebarDemo";
 import {
   SidebarInset,

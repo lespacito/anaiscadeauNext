@@ -54,7 +54,7 @@ const ContactForm = () => {
           type: "500",
         });
         toast.error(
-          "Une erreur est survenue, Veuillez vérifier vos données et réesayez"
+          "Une erreur est survenue, Veuillez vérifier vos données et réesayez",
         );
       }
     });

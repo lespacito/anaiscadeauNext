@@ -3,24 +3,12 @@ import { db } from "@/lib/db";
 import { z } from "zod";
 import { createServerAction } from "zsa";
 
-export const getPostsAction = createServerAction()
-  .input(
-    z.object({
-      skip: z.number().optional(),
-      take: z.number().optional(),
-      orderBy: z
-        .object({
-          createdAt: z.enum(["asc", "desc"]).optional(),
-        })
-        .optional(),
-    }),
-  )
+export const getPostBySlug = createServerAction()
+  .input(z.object({ slug: z.string() }))
   .handler(async ({ input }) => {
     try {
-      const posts = await db.post.findMany({
-        skip: input.skip,
-        take: input.take,
-        orderBy: input.orderBy,
+      const post = await db.post.findUnique({
+        where: { id: input.slug },
         include: {
           author: {
             select: {
@@ -44,9 +32,9 @@ export const getPostsAction = createServerAction()
           },
         },
       });
-      return posts;
+      return post;
     } catch (error) {
-      console.error("Erreur lors de la récupération des posts:", error);
-      throw new Error("Impossible de récupérer les posts");
+      console.error("Erreur lors de la récupération du post:", error);
+      throw new Error("Impossible de récupérer le post");
     }
   });

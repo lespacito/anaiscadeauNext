@@ -1,26 +1,25 @@
-/* eslint-disable react/react-in-jsx-scope */
-import ImageItem from "@/components/passions/ImageItem";
+/* eslint-disable tailwindcss/no-custom-classname */
+import { FocusCards } from "@/components/ui/focus-cards";
+import React from "react";
 
-// Définir un type pour l'image
-type Image = {
+type ImageType = {
   id: string;
   url: string;
   createdAt: Date;
 };
 
-// Définir les props du composant ImageList
-type ImageListProps = {
-  images: Image[]; // Un tableau d'images
+type ImageItemProps = {
+  images: ImageType[];
 };
 
-const ImageList = ({ images }: ImageListProps) => {
-  return (
-    <div className="mx-auto max-w-screen-lg space-y-2">
-      {images.map((image) => (
-        <ImageItem key={image.id} image={image} />
-      ))}
-    </div>
-  );
+const ImageList: React.FC<ImageItemProps> = ({ images }) => {
+  const cards = images.map((image) => ({
+    title: `Image ajoutée le ${new Date(image.createdAt).toLocaleDateString()}`,
+    src: image.url,
+    id: image.id,
+  }));
+
+  return <FocusCards cards={cards} />;
 };
 
 export default ImageList;

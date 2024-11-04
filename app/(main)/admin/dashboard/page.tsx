@@ -1,4 +1,5 @@
-/* eslint-disable react/react-in-jsx-scope */
+"use client";
+import UsersTable from "@/components/dashboard/UsersTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const Dashboard = () => {
@@ -43,6 +44,7 @@ const Dashboard = () => {
           <p className="text-3xl font-bold">100,000</p>
         </CardContent>
       </Card>
+      <UsersTable />
     </div>
   );
 };

@@ -57,7 +57,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   },
   providers: [
     Resend({
-      from: "noreplyg@anaispassions.ch",
+      from: "noreply@anaispassions.ch",
     }),
     ...authConfig.providers,
   ],

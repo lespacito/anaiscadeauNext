@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 "use client";
 import { getUsername } from "@/actions/getUsername";
 import { useUserStore } from "@/app/store/user.store";

@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { FileText, Home, Users } from "lucide-react";
 import Link from "next/link";
 

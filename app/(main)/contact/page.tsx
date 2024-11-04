@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 const Contact = () => {
   return (
-    <div className={cn("h-screen w-screen flex items-center justify-center")}>
+    <div className={cn("flex h-screen w-screen items-center justify-center")}>
       <ContactForm />
     </div>
   );

@@ -1,64 +1,30 @@
 "use server";
 
-import { auth } from "@/auth";
+import { auth } from "@/auth"; // Assurez-vous d'importer votre fonction d'authentification
 import { db } from "@/lib/db";
-import { z } from "zod"; // Pour la validation
+import { action } from "@/lib/zsa";
+import { z } from "zod";
 
-// Définition du schéma de validation
-const PostSchema = z.object({
-  title: z.string().min(1, "Le titre ne peut pas être vide"),
-  content: z.string().min(1, "Le contenu ne peut pas être vide"),
-});
+export const createPost = action
+  .input(
+    z.object({
+      title: z.string().min(1, "Le titre ne peut pas être vide"),
+      content: z.string().min(1, "Le contenu ne peut pas être vide"),
+    }),
+  )
+  .handler(async ({ input }) => {
+    const session = await auth(); // Obtenez la session de l'utilisateur actuel
 
-type Post = {
-  id: string;
-  title: string;
-  content: string;
-  authorId: string;
-  createdAt: Date;
-  updatedAt: Date;
-};
-
-type CreatePostResult = {
-  success: boolean;
-  post?: Post;
-  error?: string;
-};
-
-export async function createPost(
-  title: string,
-  content: string
-): Promise<CreatePostResult> {
-  try {
-    // Validation des données
-    const validatedData = PostSchema.parse({ title, content });
-
-    const session = await auth();
-
-    if (!session?.user?.email) {
-      return { success: false, error: "Utilisateur non connecté" };
+    if (!session || !session.user || !session.user.id) {
+      throw new Error("Vous devez être connecté pour créer un post");
     }
 
-    const user = await db.user.findUnique({
-      where: { email: session.user.email },
-      select: { id: true },
-    });
-
-    if (!user) {
-      return { success: false, error: "Utilisateur non trouvé" };
-    }
-
-    const newPost = await db.post.create({
+    const post = await db.post.create({
       data: {
-        title: validatedData.title,
-        content: validatedData.content,
-        authorId: user.id,
+        title: input.title,
+        content: input.content,
+        authorId: session.user.id, // Utilisez l'ID de l'utilisateur connecté
       },
     });
-
-    return { success: true, post: newPost };
-  } catch (error) {
-    console.error("Erreur lors de la création du post:", error);
-    return { success: false, error: "Erreur lors de la création du post" };
-  }
-}
+    return post;
+  });

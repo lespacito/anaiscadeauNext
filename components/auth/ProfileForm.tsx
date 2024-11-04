@@ -23,7 +23,7 @@ export const ProfileForm = () => {
     } catch (error) {
       console.error(
         "Erreur lors de la mise à jour du nom d'utilisateur:",
-        error
+        error,
       );
       toast.error("Impossible de mettre à jour le nom d'utilisateur.");
     }

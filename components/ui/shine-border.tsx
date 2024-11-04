@@ -1,5 +1,3 @@
-/* eslint-disable tailwindcss/no-custom-classname */
-/* eslint-disable react/react-in-jsx-scope */
 "use client";
 import { cn } from "@/lib/utils";
 import React from "react";
@@ -42,7 +40,7 @@ export default function ShineBorder({
       }
       className={cn(
         "relative grid min-h-[60px] w-fit min-w-[300px] place-items-center rounded-[--border-radius] bg-white p-3 text-black dark:bg-black dark:text-white",
-        className
+        className,
       )}
     >
       <div

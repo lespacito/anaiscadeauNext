@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import ShinyButton from "@/components/ui/shiny-button";
 import { Spotlight } from "@/components/ui/spotlight";
 import Image from "next/image";
